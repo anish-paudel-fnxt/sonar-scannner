@@ -3,9 +3,8 @@ node {
     checkout scm
   }
   stage('SonarQube Analysis') {
-    def mvn = tool 'maven';
     withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=sonar-scanner -Dsonar.projectName='sonar-scanner'"
+      sh "./gradlew sonar"
     }
   }
 }
